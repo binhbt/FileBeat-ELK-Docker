@@ -35,7 +35,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5044:5044
-      - 5000:5000
+      - 5000:5500
       - 12201:12201/udp
     environment:
       LOG_LEVEL: error

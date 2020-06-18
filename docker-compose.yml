@@ -6,6 +6,8 @@ services:
     build:
       context: dummy-app
       dockerfile: Dockerfile
+    volumes:
+     - "/test/log:/test/log"
   filebeat:
     hostname: filebeat
     image: docker-logs-elk/filebeat:1.0.0

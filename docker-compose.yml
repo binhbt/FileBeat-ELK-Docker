@@ -27,20 +27,36 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
-  logstash: 
-    hostname: logstash 
-    image: docker-logs-elk/logstash:1.0.0
+  # logstash: 
+  #   hostname: logstash 
+  #   image: docker-logs-elk/logstash:1.0.0
+  #   build:
+  #     context: logstash
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5044:5044
+  #     - 5500:5000
+  #     - 12201:12201/udp
+  #   environment:
+  #     LOG_LEVEL: error
+  #   links:
+  #     - elasticsearch
+
+  logstash:
     build:
-      context: logstash
-      dockerfile: Dockerfile
+      context: logstash/
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
-      - 5044:5044
-      - 5500:5000
-      - 12201:12201/udp
+      - "5044:5044"
+      - "5000:5000"
+      - "12201:12201/udp"
     environment:
-      LOG_LEVEL: error
-    links:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    depends_on:
       - elasticsearch
+
   elasticsearch:
     hostname: elasticsearch
     image: docker-logs-elk/elasticsearch:1.0.0

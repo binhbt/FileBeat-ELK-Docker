@@ -21,6 +21,7 @@ services:
      - "/var/run/docker.sock:/var/run/docker.sock"
      #For log file
      - "/test/log:/test/log"
+     - "/test1/log:/test1/log"
     links:
        - logstash
   kibana:

@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     volumes:
      - "/test/log:/test/log"
+     - "/test1/log:/test1/log"
   filebeat:
     hostname: filebeat
     image: docker-logs-elk/filebeat:1.0.0

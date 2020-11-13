@@ -1,5 +1,5 @@
 http.host: "0.0.0.0"
-xpack.monitoring.elasticsearch.hosts: [ "http://elasticsearch:9200" ]
+xpack.monitoring.elasticsearch.hosts: [ "http://ec2-52-56-160-83.eu-west-2.compute.amazonaws.com:9200" ]
 
 ## X-Pack security credentials
 #

@@ -9,6 +9,8 @@ services:
     volumes:
      - "/test/log:/test/log"
      - "/test1/log:/test1/log"
+    networks: 
+      - internal-network
   filebeat:
     hostname: filebeat
     image: docker-logs-elk/filebeat:1.0.0
@@ -25,6 +27,8 @@ services:
      - "/test1/log:/test1/log"
     links:
        - logstash
+    networks: 
+      - internal-network
   kibana:
     image: kibana:6.5.2
     environment:
@@ -33,6 +37,8 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
+    networks: 
+      - internal-network
   logstash: 
     hostname: logstash 
     image: docker-logs-elk/logstash:1.0.0
@@ -45,6 +51,8 @@ services:
       LOG_LEVEL: error
     links:
       - elasticsearch
+    networks: 
+      - internal-network
   elasticsearch:
     hostname: elasticsearch
     image: docker-logs-elk/elasticsearch:1.0.0
@@ -61,3 +69,5 @@ services:
         hard: -1
     ports:
       - 9200:9200
+    networks: 
+      - internal-network

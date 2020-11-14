@@ -38,20 +38,21 @@ services:
     networks: 
         - internal-network
   logstash: 
-    hostname: logstash 
-    image: docker-logs-elk/logstash:1.0.0
-    build:
-      context: logstash
-      dockerfile: Dockerfile
-    ports:
-      - 5044:5044
-    environment:
-      LOG_LEVEL: error
-    links:
-      - elasticsearch
-    networks: 
-      - internal-network
+      hostname: logstash 
+      image: docker-logs-elk/logstash:1.0.0
+      build:
+        context: logstash
+        dockerfile: Dockerfile
+      ports:
+        - 5044:5044
+      environment:
+        LOG_LEVEL: error
+      links:
+        - elasticsearch
+      networks: 
+        - internal-network
   elasticsearch:
+      hostname: elasticsearch
       image: elasticsearch:6.8.6
       ports: 
           - 9200:9200

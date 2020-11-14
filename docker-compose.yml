@@ -41,7 +41,7 @@ services:
       hostname: logstash 
       image: docker-logs-elk/logstash:1.0.0
       build:
-        context: logstash
+        context: logstash1
         dockerfile: Dockerfile
       ports:
         - 5044:5044

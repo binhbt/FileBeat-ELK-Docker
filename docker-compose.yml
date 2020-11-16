@@ -1,36 +1,36 @@
 version: '3'
 
 services:
-  # app:
-  #   image: docker-logs-elk/dummy-app:1.0.0
-  #   build:
-  #     context: dummy-app
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #    - "/test/log:/test/log"
-  #    - "/test1/log:/test1/log"
-  #    - "/test2/log:/test2/log"
-  #   networks: 
-  #     - internal-network
-  # filebeat:
-  #   hostname: filebeat
-  #   image: docker-logs-elk/filebeat:1.0.0
-  #   build:
-  #     context: filebeat
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     # needed to access all docker logs (read only) :
-  #    - "/var/lib/docker/containers:/usr/share/dockerlogs/data:ro"
-  #     # needed to access additional informations about containers
-  #    - "/var/run/docker.sock:/var/run/docker.sock"
-  #    #For log file
-  #    - "/test/log:/test/log"
-  #    - "/test1/log:/test1/log"
-  #    - "/test2/log:/test2/log"
-  #   links:
-  #      - logstash
-  #   networks: 
-  #     - internal-network
+  app:
+    image: docker-logs-elk/dummy-app:1.0.0
+    build:
+      context: dummy-app
+      dockerfile: Dockerfile
+    volumes:
+     - "/test/log:/test/log"
+     - "/test1/log:/test1/log"
+     - "/log/nginx:/log/nginx"
+    networks: 
+      - internal-network
+  filebeat:
+    hostname: filebeat
+    image: docker-logs-elk/filebeat:1.0.0
+    build:
+      context: filebeat
+      dockerfile: Dockerfile
+    volumes:
+      # needed to access all docker logs (read only) :
+     - "/var/lib/docker/containers:/usr/share/dockerlogs/data:ro"
+      # needed to access additional informations about containers
+     - "/var/run/docker.sock:/var/run/docker.sock"
+     #For log file
+     - "/test/log:/test/log"
+     - "/test1/log:/test1/log"
+     - "/log/nginx:/log/nginx"
+    links:
+       - logstash
+    networks: 
+      - internal-network
       
   kibana:
     image: kibana:6.8.6

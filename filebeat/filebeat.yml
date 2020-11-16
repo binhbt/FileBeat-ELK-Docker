@@ -31,12 +31,12 @@ filebeat.inputs:
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
     - /test2/log/*.log  
+  # multiline:
+  #   pattern: '^[0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[warn\]'
+  #   negate: true
+  #   match: after
   multiline:
-    pattern: '^[0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[warn\]'
-    negate: true
-    match: after
-  multiline:
-    pattern: '^[0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[error\]'
+    pattern: '^[0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[.+\]'
     negate: true
     match: after
   exclude_lines: ['^[0-9]{3}.[0-9]{3}.[0-9]{3}.[0-9]{3} - - \[.+\]']

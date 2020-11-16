@@ -25,6 +25,7 @@ services:
      #For log file
      - "/test/log:/test/log"
      - "/test1/log:/test1/log"
+     - "/test2/log:/test2/log"
     links:
        - logstash
     networks: 
@@ -51,6 +52,9 @@ services:
         - elasticsearch
       networks: 
         - internal-network
+      # volumes:
+      #     - ./logstash/pipeline:/usr/share/logstash/pipeline
+      #     - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
   elasticsearch:
       hostname: elasticsearch
       image: elasticsearch:6.8.6

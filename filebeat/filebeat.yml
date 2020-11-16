@@ -24,7 +24,7 @@ filebeat.inputs:
     index_field: test1_service
   fields_under_root: true
 
-  - type: log
+- type: log
   # Change to true to enable this input configuration.
   enabled: true
   scan_frequency: 10s
